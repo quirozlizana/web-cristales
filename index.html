@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inicio | Qualitas QMX Style</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --purple-main: #511764;
+      --pink-accent: #ef0076;
+      --white: #ffffff;
+      --dark-text: #333333;
+      --light-gray: #f8f8f8;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--white);
+      color: var(--dark-text);
+    }
+
+    header {
+      background-color: var(--purple-main);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      color: var(--white);
+      margin: 0;
+      font-size: 20px;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      background: var(--pink-accent);
+      color: var(--white);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .content {
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .btn-main {
+      background-color: var(--purple-main);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: var(--purple-main);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Qualitas QMX</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Seguros</a>
+      <a href="#">Siniestros</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Bienvenido a Qualitas QMX</h2>
+    <p>Atención inteligente para tus necesidades de seguros.</p>
+    <button class="btn-main">Cotiza ahora</button>
+  </section>
+
+  <section class="content">
+    <h3>¿En qué podemos ayudarte hoy?</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  </section>
+
+  <footer>
+    © 2026 Qualitas QMX. Todos los derechos reservados.
+  </footer>
+
+  <!-- ===================== -->
+  <!-- WIDGET DE CHAT AMELIA -->
+  <!-- ===================== -->
+
+  <script>
+    (function () {
+      var btnCss = "<style>.rnrSBzGtVohK6V1oycVaPw{display:flex;align-items:center;background-color:var(--pink-accent);border-radius:8px 0 0 8px;cursor:pointer;position:fixed;bottom:20px;right:0;z-index:100;height:56px;transition:background-color 0.5s ease}.rnrSBzGtVohK6V1oycVaPw:hover{background-color:var(--purple-main)}.rnrSBzGtVohK6V1oycVaPw>div>p{color:var(--white);text-align:center;font-size:14px;font-weight:400;margin-right:8px}.iNyXNTNjJ7YDh9p9AfSRzG{display:none;position:fixed;bottom:88px;right:30px;width:400px;height:600px;border:none;border-radius:8px;box-shadow:0 5px 15px rgba(0,0,0,0.16);transition:height 0.5s ease}.iNyXNTNjJ7YDh9p9AfSRzG.TfWXiGv{display:block}</style>";
+
+      var btnHtml =
+        '<div class="rnrSBzGtVohK6V1oycVaPw" id="chatBtnQuali">' +
+        '<div><p>Consulta con Amelia</p></div>' +
+        '</div>' +
+        '<div class="iNyXNTNjJ7YDh9p9AfSRzG" id="chatBoxQuali">' +
+        '<iframe width="100%" height="100%" allow="geolocation; microphone; camera"></iframe>' +
+        '</div>';
+
+      document.head.insertAdjacentHTML("beforeEnd", btnCss);
+      document.body.insertAdjacentHTML("beforeEnd", btnHtml);
+
+      var btn = document.getElementById("chatBtnQuali");
+      var chat = document.getElementById("chatBoxQuali");
+      var frame = chat.querySelector("iframe");
+      var loaded = false;
+
+      btn.addEventListener("click", function () {
+        chat.classList.toggle("TfWXiGv");
+        if (!loaded) {
+          frame.src = "https://quali.dev.amelia.com/Amelia/ui/QUALI_Dev_UI/chat?domain=quali_dev";
+          loaded = true;
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
