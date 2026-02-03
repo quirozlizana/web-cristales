@@ -2,145 +2,357 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Inicio | Qualitas QMX Style</title>
+  <title>Asistente de Seguros - Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     :root {
-      --purple-main: #511764;
-      --pink-accent: #ef0076;
-      --white: #ffffff;
-      --dark-text: #333333;
-      --light-gray: #f8f8f8;
+      --q-blue: #ac31aa;
+      --q-blue-2: #0f4fb3;
+      --q-orange: #f36f21;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --border: #e5e7eb;
     }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: var(--white);
-      color: var(--dark-text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
     header {
-      background-color: var(--purple-main);
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: linear-gradient(135deg, var(--q-blue), var(--q-blue-2));
+      color: #fff;
+      padding: 18px 24px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
 
-    header h1 {
-      color: var(--white);
+    header h2 {
       margin: 0;
-      font-size: 20px;
+      font-weight: 700;
     }
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      margin-left: 20px;
+
+    main {
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: var(--q-blue);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--muted);
+      border-bottom: 3px solid transparent;
+    }
+
+    .tab-btn.active {
+      color: var(--q-blue);
+      border-bottom-color: var(--q-orange);
+    }
+
+    .tab-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
       font-size: 14px;
     }
 
-    .hero {
-      background: var(--pink-accent);
-      color: var(--white);
-      padding: 80px 40px;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 36px;
-      margin-bottom: 16px;
-    }
-    .hero p {
-      font-size: 18px;
-      max-width: 600px;
-      margin: auto;
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--q-blue-2);
+      box-shadow: 0 0 0 3px rgba(15,79,179,0.12);
     }
 
-    .content {
-      padding: 60px 40px;
-      text-align: center;
+    .full {
+      grid-column: 1 / -1;
     }
-    .btn-main {
-      background-color: var(--purple-main);
-      color: var(--white);
-      padding: 12px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
       cursor: pointer;
     }
 
-    footer {
-      background-color: var(--purple-main);
-      color: var(--white);
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
+    .btn-primary {
+      background: var(--q-orange);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(243,111,33,0.35);
+    }
+
+    .bot-btn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: linear-gradient(135deg, var(--q-blue), var(--q-blue-2));
+      color: white;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      z-index: 9999;
+    }
+
+    @media (max-width: 640px) {
+      form {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-
 <body>
 
-  <header>
-    <h1>Qualitas QMX</h1>
-    <nav>
-      <a href="#">Inicio</a>
-      <a href="#">Seguros</a>
-      <a href="#">Siniestros</a>
-      <a href="#">Contacto</a>
-    </nav>
-  </header>
+<header>
+  <h2>Asistente de Seguros Vehiculares</h2>
+</header>
 
-  <section class="hero">
-    <h2>Bienvenido a Qualitas QMX</h2>
-    <p>Atención inteligente para tus necesidades de seguros.</p>
-    <button class="btn-main">Cotiza ahora</button>
-  </section>
+<main>
+  <div class="card">
+    <h1>Registro de información</h1>
 
-  <section class="content">
-    <h3>¿En qué podemos ayudarte hoy?</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  </section>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="openTab('vehiculo')">1️⃣ Vehículo</button>
+      <button class="tab-btn" onclick="openTab('conductor')">2️⃣ Conductor</button>
+    </div>
 
-  <footer>
-    © 2026 Qualitas QMX. Todos los derechos reservados.
-  </footer>
+    <!-- Paso 1 -->
+    <div id="vehiculo" class="tab-content active">
+      <form id="vehiculoForm">
+        <div>
+          <label>Placa</label>
+          <input id="placa" required />
+        </div>
+        <div>
+          <label>Marca</label>
+          <input id="marca" required />
+        </div>
+        <div>
+          <label>Modelo</label>
+          <input id="modelo" required />
+        </div>
+        <div>
+          <label>Año</label>
+          <select id="anio" required></select>
+        </div>
+        <div class="actions full">
+          <span></span>
+          <button type="button" class="btn-primary" onclick="openTab('conductor')">
+            Siguiente →
+          </button>
+        </div>
+      </form>
+    </div>
 
-  <!-- ===================== -->
-  <!-- WIDGET DE CHAT AMELIA -->
-  <!-- ===================== -->
+    <!-- Paso 2 -->
+    <div id="conductor" class="tab-content">
+      <form id="conductorForm">
+        <div>
+          <label>Nombre completo</label>
+          <input id="nombre" required />
+        </div>
+        <div>
+          <label>DNI / Documento</label>
+          <input id="dni" required />
+        </div>
+        <div>
+          <label>Teléfono</label>
+          <input id="telefono" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input id="email" type="email" />
+        </div>
 
-  <script>
-    (function () {
-      var btnCss = "<style>.rnrSBzGtVohK6V1oycVaPw{display:flex;align-items:center;background-color:var(--pink-accent);border-radius:8px 0 0 8px;cursor:pointer;position:fixed;bottom:20px;right:0;z-index:100;height:56px;transition:background-color 0.5s ease}.rnrSBzGtVohK6V1oycVaPw:hover{background-color:var(--purple-main)}.rnrSBzGtVohK6V1oycVaPw>div>p{color:var(--white);text-align:center;font-size:14px;font-weight:400;margin-right:8px}.iNyXNTNjJ7YDh9p9AfSRzG{display:none;position:fixed;bottom:88px;right:30px;width:400px;height:600px;border:none;border-radius:8px;box-shadow:0 5px 15px rgba(0,0,0,0.16);transition:height 0.5s ease}.iNyXNTNjJ7YDh9p9AfSRzG.TfWXiGv{display:block}</style>";
+        <div class="actions full">
+          <button type="button" class="btn-secondary" onclick="openTab('vehiculo')">
+            ← Volver
+          </button>
+          <button type="submit" class="btn-primary">
+            Guardar datos
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
 
-      var btnHtml =
-        '<div class="rnrSBzGtVohK6V1oycVaPw" id="chatBtnQuali">' +
-        '<div><p>Consulta con Amelia</p></div>' +
-        '</div>' +
-        '<div class="iNyXNTNjJ7YDh9p9AfSRzG" id="chatBoxQuali">' +
-        '<iframe width="100%" height="100%" allow="geolocation; microphone; camera"></iframe>' +
-        '</div>';
+<button class="bot-btn" onclick="openBot()">💬 Chatea con el asistente</button>
 
-      document.head.insertAdjacentHTML("beforeEnd", btnCss);
-      document.body.insertAdjacentHTML("beforeEnd", btnHtml);
+<iframe
+  id="receiver"
+  src="https://quali.dev.amelia.com/Amelia/ui/QUALI_Dev_UI/3/chat?domain=qualidev&embed=iframe"
+  style="position: fixed; bottom: -9999px; right: -9999px; width: 1px; height: 1px; border: 0;"
+></iframe>
 
-      var btn = document.getElementById("chatBtnQuali");
-      var chat = document.getElementById("chatBoxQuali");
-      var frame = chat.querySelector("iframe");
-      var loaded = false;
+<script>
+  function openTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
-      btn.addEventListener("click", function () {
-        chat.classList.toggle("TfWXiGv");
-        if (!loaded) {
-          frame.src = "https://quali.dev.amelia.com/Amelia/ui/QUALI_Dev_UI/chat?domain=quali_dev";
-          loaded = true;
+    document.getElementById(tab).classList.add('active');
+
+    if (tab === 'vehiculo') {
+      document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    } else {
+      document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    }
+  }
+
+  // Años
+  const anioSelect = document.getElementById("anio");
+  const currentYear = new Date().getFullYear();
+  for (let y = currentYear; y >= 1990; y--) {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = y;
+    anioSelect.appendChild(opt);
+  }
+
+  // Guardar todo
+  document.getElementById("conductorForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+      vehiculo: {
+        placa: placa.value,
+        marca: marca.value,
+        modelo: modelo.value,
+        anio: anio.value
+      },
+      conductor: {
+        nombre: nombre.value,
+        dni: dni.value,
+        telefono: telefono.value,
+        email: email.value
+      }
+    };
+
+    localStorage.setItem("registroSeguro", JSON.stringify(data));
+    alert("✅ Datos guardados correctamente");
+  });
+
+  // Bot popup
+  let botWindow = null;
+  function openBot() {
+    const width = 380, height = 520;
+    const left = window.screenX + window.innerWidth - width - 20;
+    const top = window.screenY + window.innerHeight - height - 40;
+    const chatUrl = "https://quali.dev.amelia.com/Amelia/ui/QUALI_Dev_UI/3/chat?domain=qualidev&embed=iframe";
+
+    if (botWindow && !botWindow.closed) {
+      botWindow.focus();
+      return;
+    }
+
+    botWindow = window.open(
+      chatUrl,
+      "ameliaChat",
+      `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`
+    );
+  }
+
+  function sendToAmelia(data) {
+      const iframe = document.getElementById('receiver');
+
+      if (!iframe || !iframe.contentWindow) {
+        console.warn("❌ Iframe de Amelia no listo");
+        return;
+      }
+
+      iframe.contentWindow.postMessage(
+        data,
+        '*'
+      );
+    }
+
+    window.addEventListener('load', () => {
+      console.log("Página cargada, ping a Amelia");
+      sendToAmelia({
+        actionType: 'ameliaSay',
+        actionData: 'Hola Amelia, ya te puedo enviar mensajes desde mi web 🙌'
+      });
+    });
+
+    function goToConductor() {
+      openTab('conductor');
+
+      sendToAmelia({
+        actionType: 'ameliaConversationAttributes',
+        actionData: {
+          step: 'conductor',
+          completedStep: 'vehiculo'
         }
       });
-    })();
-  </script>
+
+      sendToAmelia({
+        actionType: 'ameliaSay',
+        actionData: 'El usuario pasó al paso de conductor.'
+      });
+    }
+</script>
 
 </body>
 </html>
