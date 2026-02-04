@@ -239,7 +239,7 @@
   </div>
 </main>
 
-<button class="bot-btn" onclick="openBot()">💬 Consulta con Amelia</button>
+<button class="bot-btn" onclick="openBot()">💬 Chatea con el asistente</button>
 
 <iframe
   id="receiver"
@@ -296,10 +296,22 @@
 
   // Bot popup
   let botWindow = null;
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
   function openBot() {
     const width = 380, height = 520;
-    const left = window.screenX + window.innerWidth - width - 20;
-    const top = window.screenY + window.innerHeight - height - 40;
+    // Ajustes para móvil
+    if (isMobile()) {
+      width = Math.min(360, window.innerWidth - 20);   // casi todo el ancho
+      height = Math.floor(window.innerHeight * 0.55); // 👈 solo 55% del alto
+    }
+
+    const left = Math.max(10, window.screenX + window.innerWidth - width - 20);
+    const top = Math.max(10, window.screenY + window.innerHeight - height - 40);
+
+    //const left = window.screenX + window.innerWidth - width - 20;
+    //const top = window.screenY + window.innerHeight - height - 40;
     const chatUrl = "https://quali.dev.amelia.com/Amelia/ui/QUALI_Dev_UI/3/chat?domain=qualidev&embed=iframe";
 
     if (botWindow && !botWindow.closed) {
